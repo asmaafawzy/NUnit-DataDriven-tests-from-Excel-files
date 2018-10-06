@@ -2,7 +2,7 @@
 
 The purpose of Unit Testing is to validate that each unit of the software works as expected, so we're gonna through Nunit which is the most popular unit test framework for .NET and know how to read data from excel file and use this data through Nunit attribute(TestCaseSource). Let's start ;)
 
-  # 1) At first the function `ReadFromExcel`:
+  # 1) At first the function `ReadFromExcel`:ي
    - it takes the `excelFileName` and `excelsheetTabName` and return a list of TestCaseData attribute. 
      - Here it gets the path to the excel file in your project. if the file not found it throws an exception. 
  ```c#
