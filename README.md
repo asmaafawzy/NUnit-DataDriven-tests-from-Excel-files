@@ -1,7 +1,10 @@
 # NUnit-DataDriven-tests-from-Excel-files
 
-The purpose of Unit Testing is to validate that each unit of the software works as expected, so we're going through NUnit which is the most popular unit test framework for .NET and know how to read data from excel file and use this data through NUnit attribute `TestCaseSource`. 
-Let's start ;)
+ The purpose of Unit Testing is to validate that each unit of the software works as expected.
+ So we're going through NUnit which is the most popular unit test framework for .NET. 
+ Next, we will know how to read data from excel file and use this data through NUnit attribute TestCaseSource. 
+
+Let's start ;) 
 
 - See the code below and I will explain it. 
   
