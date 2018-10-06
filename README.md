@@ -46,8 +46,8 @@ The purpose of Unit Testing is to validate that each unit of the software works 
 
   1) At first the function `ReadFromExcel`:
   
-     - it takes the `excelFileName` and `excelsheetTabName` and return a list of TestCaseData attribute. 
-     - Here it gets the path to the excel file in your project. if the file not found it throws an exception. 
+     - it takes the `excelFileName` and `excelsheetTabName` and returns a list of TestCaseData attribute. 
+     - it gets the path to the excel file in your project. if the file not found it throws an exception. 
      
  
  ```c#
