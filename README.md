@@ -6,7 +6,10 @@
 
 Let's start ;) 
 
-- See the code below and I will explain it. 
+- Just add excel file with test data to your NUnit project and make sure that file properties "Copy to Output Directory" is set to "Copy   always".
+
+- You should create a class for relation between data driven tests and xlsx file with test data. 
+- See the code below and I will explain it:
   
 ```c#
  public class ExcelReader
