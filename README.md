@@ -2,23 +2,7 @@
 
 The purpose of Unit Testing is to validate that each unit of the software works as expected, so we're gonna through Nunit which is the most popular unit test framework for .NET and know how to read data from excel file and use this data through Nunit attribute(TestCaseSource). Let's start ;)
 
-
-  1) At first the function `ReadFromExcel`:
-   - it takes the `excelFileName` and `excelsheetTabName` and return a list of TestCaseData attribute. 
-     - Here it gets the path to the excel file in your project. if the file not found it throws an exception. 
-     
- 
- ```c#
-     string executableLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-     string xslLocation = Path.Combine(executableLocation, "data/"+ excelFileName);    
-     string cmdText = "SELECT * FROM [" + excelsheetTabName + "$]";
-     if (!File.Exists(xslLocation))
-        throw new Exception(string.Format("File name: {0}", xslLocation), new FileNotFoundException());
-```   
-
-  2) After getting the path we need to be able to read the file and get the data from it, so we have to open a connection through `OleDb: which is an API designed by Microsoft, allows accessing data from a variety of sources in a uniform manner`. Now we opened the connection and will start reading the file row by row then add each row in our list.
-  
-  - See the code below: 
+- See the code below and will explain it: 
   
 ```c#
  public class ExcelReader
@@ -32,6 +16,7 @@ The purpose of Unit Testing is to validate that each unit of the software works 
                 
                 if (!File.Exists(xslLocation))
                     throw new Exception(string.Format("File name: {0}", xslLocation), new FileNotFoundException());
+                    
                 string connectionStr = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES\";", xslLocation);
                 
                 var testCases = new List<TestCaseData>();
@@ -59,6 +44,42 @@ The purpose of Unit Testing is to validate that each unit of the software works 
         }    
 ```
 
+  1) At first the function `ReadFromExcel`:
+   - it takes the `excelFileName` and `excelsheetTabName` and return a list of TestCaseData attribute. 
+     - Here it gets the path to the excel file in your project. if the file not found it throws an exception. 
+     
+ 
+ ```c#
+     string executableLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+     string xslLocation = Path.Combine(executableLocation, "data/"+ excelFileName);    
+     string cmdText = "SELECT * FROM [" + excelsheetTabName + "$]";
+     if (!File.Exists(xslLocation))
+        throw new Exception(string.Format("File name: {0}", xslLocation), new FileNotFoundException());
+```   
+
+  2) After getting the path we need to be able to read the file and get the data from it, so we have to open a connection through `OleDb: which is an API designed by Microsoft, allows accessing data from a variety of sources in a uniform manner`. Now we opened the connection and will start reading the file row by row then add each row in our list.
+```c#
+     string connectionStr = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0  Xml;HDR=YES\";", xslLocation);
+                
+                var testCases = new List<TestCaseData>();
+                using (var connection = new OleDbConnection(connectionStr))
+                {
+                    connection.Open();
+                    var command = new OleDbCommand(cmdText, connection);
+                    var reader = command.ExecuteReader();
+                    if (reader == null)
+                        throw new Exception(string.Format("No data return from file, file name:{0}", xslLocation));
+                    while (reader.Read())
+                    {
+                        var row = new List<string>();
+                        var feildCnt = reader.FieldCount;
+                        for (var i = 0; i < feildCnt; i++)
+                            row.Add(reader.GetValue(i).ToString());
+                        testCases.Add(new TestCaseData(row.ToArray()));
+                    }
+                }
+  
+```
 
   3) Passing the data to the `TestCaseSource` attribute
   - In your test class, create a new function then send the `FILENAME` and `TabName`.
