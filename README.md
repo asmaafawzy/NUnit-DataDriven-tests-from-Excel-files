@@ -16,7 +16,8 @@ The purpose of Unit Testing is to validate that each unit of the software works 
         throw new Exception(string.Format("File name: {0}", xslLocation), new FileNotFoundException());
 ```   
 
-  2) After getting the path we need to be able to read the file and get the data from it, so we have to open a connection through `OleDb: which is an API designed by Microsoft, allows accessing data from a variety of sources in a uniform manner.` Now we opened the connection and will start reading the file row by row then add the row in our list.
+  2) After getting the path we need to be able to read the file and get the data from it, so we have to open a connection through `OleDb: which is an API designed by Microsoft, allows accessing data from a variety of sources in a uniform manner`. Now we opened the connection and will start reading the file row by row then add each row in our list.
+  
   - See the code below: 
   
 ```c#
