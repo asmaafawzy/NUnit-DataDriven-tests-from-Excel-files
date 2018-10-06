@@ -85,7 +85,7 @@ The purpose of Unit Testing is to validate that each unit of the software works 
 
   3) Passing the data to the `TestCaseSource` attribute
   
-    - In your test class, create a new function then send the `FILENAME` and `TabName`.
+   - In your test class, create a new function then send the `FILENAME` and `TabName`.
   
 ```c# 
      private static string FILENAME = "Registeration_Data.xlsx";
