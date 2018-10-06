@@ -1,9 +1,9 @@
 # NUnit-DataDriven-tests-from-Excel-files
 
-The purpose of Unit Testing is to validate that each unit of the software works as expected, so we're gonna through NUnit which is the most popular unit test framework for .NET and know how to read data from excel file and use this data through NUnit attribute `TestCaseSource`. 
+The purpose of Unit Testing is to validate that each unit of the software works as expected, so we're going through NUnit which is the most popular unit test framework for .NET and know how to read data from excel file and use this data through NUnit attribute `TestCaseSource`. 
 Let's start ;)
 
-- See the code below and will explain it: 
+- See the code below and I will explain it. 
   
 ```c#
  public class ExcelReader
@@ -60,8 +60,8 @@ Let's start ;)
 ```   
 
   2) After getting the path, we need to be able to read the file and get the data from it.
-     we have to open a connection through `OleDb: which is an API designed by Microsoft, allows accessing data from a variety of sources      in a uniform manner`. 
-     Now we opened the connection and will start reading the file row by row then add each row in our list.
+      We have to open a connection through `OleDb: which is an API designed by Microsoft, allows accessing data from a variety of             sources in a uniform manner`. 
+      Now we open the connection and will start reading the file row by row then add each row to our list.
   
 ```c#
      string connectionStr = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0  Xml;HDR=YES\";", xslLocation);
@@ -86,7 +86,7 @@ Let's start ;)
   
 ```
 
-  3) Passing the data to the `TestCaseSource` attribute
+  3) Passing data to the `TestCaseSource` attribute
   
    - In your test class, you should create a new function then pass the values of `FILENAME` and `TabName` of your data file.
   
